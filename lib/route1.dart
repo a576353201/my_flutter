@@ -33,7 +33,7 @@ class Route1State extends State<Route1> {
       body: Center(
         child: Center(
           child: Text(
-            'Hello world ,i am route1 haha',
+            'Hello world ,i am route1,hehe',
           ),
         ),
       ),
