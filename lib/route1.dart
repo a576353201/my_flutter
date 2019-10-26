@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 ///
 /// Created by dumingwei on 2019/4/9.
@@ -27,16 +28,36 @@ class Route1 extends StatefulWidget {
 }
 
 class Route1State extends State<Route1> {
+  static final channelName = "com.example.androidapp.channel_second";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Center(
-          child: Text(
-            'Hello world ,i am route1,hehe',
-          ),
+        child: Column(
+          children: <Widget>[
+            Center(
+              child: Text(
+                'Hello world ,i am route1,hehe',
+              ),
+            ),
+            Center(
+              child: RaisedButton(
+                  child: Text(
+                    '使用channel与Android通信',
+                  ),
+                  onPressed: () {
+                    jumpToNativePage();
+                  }),
+            ),
+          ],
         ),
       ),
     );
+  }
+
+  Future<Null> jumpToNativePage() async {
+    MethodChannel methodChannel = MethodChannel(channelName);
+    await methodChannel.invokeMethod("open_second_activity");
   }
 }
